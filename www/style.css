@@ -2466,14 +2466,50 @@ a.signup_twitter {
 }
 
 .about_card_rect {
-    width: 305px;
-    height: 246px;
+    width: 100%;
+    /*height: 246px;*/
+    padding: 5px;
+    /*margin: 20px;*/
     border-style: solid;
     border-width: 2px;
     border-image-source: linear-gradient(129deg, #916bff, #3366ff);
     border-image-slice: 1;
 }
+.about_card h4{
+    width: 290px;
+    height: 20px;
+    font-family: SofiaPro;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #13114a;
+    padding-top: 30px;
+}
 
+.about-contact {
+    text-align: center;
+    line-height: 25px;
+}
+.about-contact img{
+    width: 61px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.about-contact p{
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #4d4cff;
+    font-family: Anurati;
+}
 
 /* 12.2 CONTACT FORM */
 

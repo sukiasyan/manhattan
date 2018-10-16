@@ -4,7 +4,7 @@ var myApp = new Framework7({
     // Enable templates auto precompilation
     precompileTemplates: true,
     // Enabled pages rendering using Template7
-	swipeBackPage: false,
+	swipeBackPage: true,
 	swipePanelOnlyClose: true,
 	pushState: true,
     template7Pages: true

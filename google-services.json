@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "256327489211",
+    "firebase_url": "https://mbeat-ae6b6.firebaseio.com",
+    "project_id": "mbeat-ae6b6",
+    "storage_bucket": "mbeat-ae6b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256327489211:android:e2c00339fea5e2fe",
+        "android_client_info": {
+          "package_name": "com.bmby.manhattanview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256327489211-eisnl51cuvrtora84uv4lfjg7ksfrjef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK-t5BQNTokSCdQfIs69Tp1N-TXubhpho"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

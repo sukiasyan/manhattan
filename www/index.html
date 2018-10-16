@@ -18,7 +18,12 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,900" rel="stylesheet">
   <!--<link rel="stylesheet" href="css/icomoon/demo-files/demo.css">-->
   <link rel="stylesheet" href="css/icomoon/style.css">
-
+  <script>
+    window.onload = function() {
+      loadFirebase();
+      console.log("TEST")
+    }
+  </script>
 </head>
 <body id="mobile_wrap">
 
@@ -279,6 +284,7 @@
     <script type="text/javascript" src="js/audio.min.js"></script>
     <script type="text/javascript" src="js/my-app.js"></script>
 
+
     <!-- Firebase App is always required and must be first -->
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
 
@@ -290,7 +296,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-functions.js"></script>
 
     <!-- Comment out (or don't include) services that you don't want to use -->
-     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-storage.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
 

@@ -51,13 +51,16 @@
     </platform>
     <platform name="ios">
         <!-- iPhone / iPod Touch -->
-        <icon src="www/res/icon/ios/icon@3x.png" platform="ios" width="57" height="57" />
+        <icon src="www/res/icon/ios/icon@2x.png" platform="ios" width="57" height="57" />
+        <icon src="icon@2x.png" platform="ios" width="57" height="57" />
 
         <!-- iPad -->
-        <icon src="www/res/icon/ios/icon@2x.png" platform="ios" width="72" height="72" />
+        <icon src="www/res/icon/ios/icon@3x.png" platform="ios" width="72" height="72" />
+        <icon src="icon@3x.png" platform="ios" width="72" height="72" />
 
         <!-- iPhone Spotlight and Settings Icon -->
-        <icon src="www/res/icon/ios/icon.png" platform="ios" width="29" height="29" />
+        <icon src="./www/res/icon/ios/icon.png" platform="ios" width="29" height="29" />
+        <icon src="icon.png" platform="ios" width="29" height="29" />
 
         <splash height="1136" platform="ios" src="www/res/screen/ios/icon@3x.png" width="640" />
         <splash height="1334" platform="ios" src="www/res/screen/ios/icon@3x.png" width="750" />

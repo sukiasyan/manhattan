@@ -1,0 +1,15 @@
+{
+  "name": "com.bmby.manhattanview",
+  "version": "1.0.0",
+  "displayName": "manhatan",
+  "cordova": {
+    "platforms": [
+      "ios",
+      "browser"
+    ]
+  },
+  "dependencies": {
+    "cordova-ios": "^4.5.5",
+    "cordova-browser": "^5.0.4"
+  }
+}

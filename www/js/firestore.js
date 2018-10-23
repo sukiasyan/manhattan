@@ -81,6 +81,7 @@ function loadFirebase () {
     querySnapshot.forEach((doc) => {
       var meetups = doc.data();
       console.log(meetups);
+      console.log('Test');
       if (meetups.floorNum === "All") {
         var createLi = document.createElement('li');
         var link = document.createElement('a');
@@ -101,9 +102,23 @@ function loadFirebase () {
   });
 
 
+  // let docRef = db.collection('Gallery').where('type', '==', 'general');//need to take only type general
+  // query.get().then(querySnapshot => { let docs = querySnapshot.docs;
+  //   let projGalery = {};
+  //   let i = 0;
+  //   for (let doc of docs) { projGalery[i] = doc.data(); i++;
+  //   } console.log(projGalery);
+  // });
+
+
+
   var clickedPic = function (url) {
     window.location.href = url;
   };
+
+
+
+
 
 
 // Wishlist Collection ************************************

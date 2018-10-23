@@ -1,306 +1,464 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
-    <link href="images/apple-touch-startup-image-320x460.png" media="(device-width: 320px)" rel="apple-touch-startup-image">
-    <link href="images/apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)"
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
+  <link href="images/apple-touch-startup-image-320x460.png" media="(device-width: 320px)"
         rel="apple-touch-startup-image">
-    <title>Manhattan</title>
-    <link rel="stylesheet" href="css/framework7.css">
-    <link rel="stylesheet" href="style.css">
-    <link type="text/css" rel="stylesheet" href="css/swipebox.css" />
-    <link type="text/css" rel="stylesheet" href="css/animations.css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,900" rel="stylesheet">
+  <link href="images/apple-touch-startup-image-640x920.png"
+        media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image">
+  <title>Manhattan</title>
+  <link rel="stylesheet" href="css/framework7.css">
+  <link rel="stylesheet" href="style.css">
+  <link type="text/css" rel="stylesheet" href="css/swipebox.css"/>
+  <link type="text/css" rel="stylesheet" href="css/animations.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,900" rel="stylesheet">
   <!--<link rel="stylesheet" href="css/icomoon/demo-files/demo.css">-->
   <link rel="stylesheet" href="css/icomoon/style.css">
-  <script>
-    window.onload = function() {
-      // loadFirebase();
-      console.log("TEST")
-    }
-  </script>
+
+
+  <!-- Firebase App is always required and must be first -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-functions.js"></script>
+
+  <!-- Comment out (or don't include) services that you don't want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-storage.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+
+  <!--<script src="js/firestore.js" type="text/javascript"></script>-->
+  <!--<script src="js/firestore_2.js" type="text/javascript"></script>-->
+
 </head>
-<body id="mobile_wrap">
+<body>
 
-    <div class="statusbar-overlay"></div>
-    <div class="panel-overlay"></div>
-    <div class="panel panel-left panel-reveal">
-        <div class="view view-subnav">
-            <div class="pages">
-                <div data-page="panel-leftmenu" class="page pagepanel">
-                    <div class="page-content">
-                        <nav class="main-nav icons_21">
-                            <ul>
-                                <li><a href="index.html" class="close-panel" data-view=".view-main"><img src="images/icons/white/home.png"
-                                            alt="" title="" /><span>YOUR ACCOUNT</span></a></li>
+<script id="home-tpl" type="text/template">
+  <div class="views ">
+    <div class="view view-main">
+      <div class="pages">
 
-                                <li><a href="features.html" class="close-panel" data-view=".view-main"><img src="images/icons/white/features.png"
-                                            alt="" title="" /><span>PROJECT MODEL</span></a></li>
+        <div data-page="index" class="page homepage">
+          <div class="page-content">
 
-
-                                <li><a href="team.html" class="close-panel" data-view=".view-main"><img src="images/icons/white/users.png"
-                                            alt="" title="" /><span>INTERESTED POINTS</span></a></li>
-
-                                <li><a href="gallery.html" class="close-panel" data-view=".view-main"><img src="images/icons/white/photos.png" alt="" title="" /><span>PROJECT GALLERY</span></a></li>
-
-                                <li><a href="music.html" class="close-panel" data-view=".view-main"><img src="images/icons/white/music.png"
-                                            alt="" title="" /><span>WISHLIST</span></a></li>
-
-                                <li><a href="about.html" class="close-panel" data-view=".view-main"><img src="images/icons/white/tables.png"
-                                            alt="" title="" /><span>ABOUT THE PROJECT</span></a></li>
-
-                                <li><a href="tel:012345678" class="close-panel external" data-view=".view-main"><img
-                                            src="images/icons/white/phone.png" alt="" title="" /><span>CONTACT</span></a></li>
-
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
+            <!--Header-->
+            <div class="navbarpages">
+              <div class="navbar_left">
+                <div class="logo_text"><a href="index.html"><span><a href="#home" class="close-panel external"
+                                                                     data-view=".view-main"><img
+                    src="images/icons/white/phone.png" alt=""
+                    title=""/></a></span></a></div>
+              </div>
+              <div class="navbar_center">
+                <div class="logo_text"><a href="index.html"><span>Manhattan Views</span></a></div>
+              </div>
             </div>
-        </div>
-    </div>
-
-    <div class="panel panel-right panel-reveal">
-        <div class="user_login_info">
-            <!--<div class="user_thumb">-->
-                <!--<img src="images/page_photo.jpg" alt="" title="" />-->
-                <!--<div class="user_details">-->
-                    <!--<p>Welcome, <span>John Doe</span></p>-->
-                <!--</div>-->
-                <!--<div class="user_avatar"><img src="images/avatar.jpg" alt="" title="" /></div>-->
-            <!--</div>-->
-            <nav class="user-nav">
-             <div class="slide-menu-header">
-              <div class="row ">
-                <div><img src="images/icons/white/top_logo.png" alt=""></div>
-                <div ><img src="images/icons/white/settings.png" alt="" title="" class="settings-logo" /></div>
-              </div>
-              <div class="row">
-                <div class="slider_logo_text">MANHATTAN NEWS</div>
-              </div>
-             </div>
-              <ul>
-                    <li><a href="#" data-popup=".popup-login" class="open-popup close-panel" ><span class="icon-man"></span><span>YOUR ACCOUNT</span></a></li>
-                    <li><a href="index.html" class="close-panel"><span class="icon-cube"></span><span>PROJECT MODEL</span></a></li>
-                    <li><a href="features.html" class="close-panel"><span class="icon-drop"></span><span>INTERESTED POINTS</span></a></li>
-                    <li><a href="gallery.html" class="close-panel"><span class="icon-gallery"></span><span>PROJECT GALLERY</span></a></li>
-                    <li><a href="wishlist.html" class="close-panel"><span class="icon-star"></span><span>WISHLIST</span></a></li>
-                    <li><a href="about.html" class="close-panel"><span class="icon-dots"></span><span>ABOUT THE PROJECT</span></a></li>
-                    <li><a href="contact.html" class="close-panel"><span class="icon-contact"></span><span>CONTACT</span></a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-    <div class="views">
-
-        <div class="view view-main">
-
-
-
-            <div class="pages">
-
-                <div data-page="index" class="page homepage">
-                    <div class="page-content">
-
-                      <!--Header-->
-                        <div class="navbarpages">
-                            <div class="navbar_left">
-                                <div class="logo_text"><a href="index.html"><span><a href="tel:012345678" class="close-panel external"
-                                                data-view=".view-main"><img src="images/icons/white/phone.png" alt=""
-                                                    title="" /></a></span></a></div>
-                            </div>
-                            <div class="navbar_center">
-                                <div class="logo_text"><a href="index.html"><span>Manhattan Views</span></a></div>
-                            </div>
-                        </div>
-                      <div class="top_menu_open">
-                        <a href="#" data-panel="left" class="open-panel">
-                          <span class="icon-menu"></span>
+            <div class="top_menu_open">
+              <a href="#" data-panel="left" class="open-panel">
+                <span class="icon-menu"></span>
+              </a>
+            </div>
+            <div class="footer-bar"></div>
+            <!-- Slider -->
+            <div class="swiper-container slidertoolbar swiper-init" data-effect="slide" data-parallax="true"
+                 data-pagination=".swiper-pagination">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image:url(images/slide3.jpg);">
+                  <div class="slider_trans">
+                    <div class="slider-caption">
+                      <div class="floating_menu">
+                        <a href="#" data-panel="right" class="open-panel">
+                          <span class="icon-menu-float"></span>
                         </a>
                       </div>
-                        <!-- Slider -->
-                        <div class="swiper-container slidertoolbar swiper-init" data-effect="slide" data-parallax="true"
-                            data-pagination=".swiper-pagination">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide" style="background-image:url(images/slide3.jpg);">
-                                    <div class="slider_trans">
-                                        <div class="slider-caption">
-                                          <div class="floating_menu">
-                                            <a href="#" data-panel="right" class="open-panel">
-                                              <span class="icon-menu-float"></span>
-                                            </a>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-                      <!--Footer-->
-                        <div class="swiper-container-toolbar swiper-toolbar swiper-init" data-effect="slide"
-                            data-slides-per-view="4" data-slides-per-group="4" data-space-between="0" data-pagination=".swiper-pagination-toolbar">
-                            <div class="swiper-pagination-toolbar"></div>
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide toolbar-icon"><a href="about.html" data-view=".view-main">
-                                  <div class="icon-building"></div><span class="footer">Room No.</span></a> </div>
-                                <div class="swiper-slide toolbar-icon"><a href="#" data-popup=".popup-login" class="open-popup close-panel">
-                                  <div class="icon-menu"></div><span class="footer">Floor No.</span></a></div>
-                                <div class="swiper-slide toolbar-icon"><a href="firetest.html" data-view=".view-main"
-                                                                          class="external"><div class="icon-menu"></div><span class="footer">Budget</span></a></div>
-                                <div class="swiper-slide toolbar-icon"><a href="contact.html" data-view=".view-main">
-                                  <div class="icon-menu"></div><span class="footer">Availability</span></a></div>
+  <!--HEADER-->
+  <div class="panel panel-right panel-reveal">
+    <div class="user_login_info">
+      <nav class="user-nav">
+        <div class="slide-menu-header">
+          <div class="row ">
+            <div><img src="images/icons/white/top_logo.png" alt=""></div>
+            <div><img src="images/icons/white/settings.png" alt="" title="" class="settings-logo"/></div>
+          </div>
 
-                                <div class="swiper-slide toolbar-icon"><a href="cart.html" data-view=".view-main"><div class="icon-menu"></div><span class="footer">Room No.</span></a></div>
-                                <div class="swiper-slide toolbar-icon"><a href="#" data-popup=".popup-social" class="open-popup">
-                                  <div class="icon-menu"></div><span class="footer">Room No.</span></a></div>
-                                <div class="swiper-slide toolbar-icon"><a href="#" data-popup=".popup-login" class="open-popup">
-                                  <div class="icon-menu"></div><span class="footer">Room No.</span></a></div>
-                                <div class="swiper-slide toolbar-icon"><a href="blog.html" data-view=".view-main">
-                                  <div class="icon-menu"></div><span class="footer">Room No.</span>
-                                </a></div>
+          <div class="row">
+            <div class="slider_logo_text">MANHATTAN NEWS</div>
+          </div>
+        </div>
+        <ul>
+          <li><a href="#" data-popup=".popup-login" class="open-popup close-panel"
+                 onclick="console.log('Clicked')"><span class="icon-man"></span><span>YOUR ACCOUNT</span></a>
+          </li>
+          <li><a href="index.html" class="close-panel"><span class="icon-cube"></span><span>PROJECT MODEL</span></a>
+          </li>
+          <li><a href="features.html" class="close-panel"><span class="icon-drop"></span><span>INTERESTED POINTS</span></a>
+          </li>
+          <li><a href="#gallery" class="close-panel external" data-view=".view-main">
+            <span class="icon-gallery"></span><span>PROJECT GALLERY</span></a>
+          </li>
+          <li><a href="#wishlist" class="close-panel external" data-view=".view-main">
+            <span class="icon-star"></span><span>WISHLIST</span></a>
+          </li>
+          <li><a href="about.html" class="close-panel"><span class="icon-dots"></span><span>ABOUT THE PROJECT</span></a>
+          </li>
+          <li><a href="contact.html" class="close-panel"><span class="icon-contact"></span><span>CONTACT</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 
-                                <div class="swiper-slide toolbar-icon"><a href="features.html" data-view=".view-main">
-                                  <div class="icon-menu"></div><span class="footer">Room No.</span></a></div>
+</script>
 
-                            </div>
-                        </div>
+<!--<script id="employee-list-tpl" type="text/template">-->
+<!--<ul class="table-view">-->
+<!--{{#each this}}-->
+<!--<li class="table-view-cell media">-->
+<!--<a href="#employees/{{ id }}">-->
+<!--<img class="media-object pull-left" src="assets/pics/{{pic}}">-->
+<!--<div class="media-body">-->
+<!--{{firstName}} {{lastName}}-->
+<!--<p>{{title}}</p>-->
+<!--</div>-->
+<!--</a>-->
+<!--</li>-->
+<!--{{/each}}-->
+<!--</ul>-->
+<!--</script>-->
+
+<!--<script id="employee-tpl" type="text/template">-->
+<!--<header class="bar bar-nav">-->
+<!--<a class="btn btn-link btn-nav pull-left" href="#">-->
+<!--<span class="icon icon-left-nav"></span>-->
+<!--</a>-->
+<!--<h1 class="title">Employee</h1>-->
+<!--</header>-->
+<!--<div class="content">-->
+<!--<div class="card">-->
+<!--<ul class="table-view">-->
+<!--<li class="table-view-cell media">-->
+<!--<img class="media-object pull-left" src="assets/pics/{{pic}}">-->
+<!--<div class="media-body">-->
+<!--{{ firstName }} {{ lastName }}-->
+<!--<p>{{ title }}</p>-->
+<!--</div>-->
+<!--</li>-->
+<!--<li class="table-view-cell media">-->
+<!--<a href="tel:{{ officePhone }}" class="push-right">-->
+<!--<span class="media-object pull-left icon icon-call"></span>-->
+<!--<div class="media-body">-->
+<!--Call Office-->
+<!--<p>{{ officePhone }}</p>-->
+<!--</div>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li class="table-view-cell media">-->
+<!--<a href="tel:{{ cellPhone }}" class="push-right">-->
+<!--<span class="media-object pull-left icon icon-call"></span>-->
+<!--<div class="media-body">-->
+<!--Call Cell-->
+<!--<p>{{ cellPhone }}</p>-->
+<!--</div>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li class="table-view-cell media">-->
+<!--<a href="sms:{{ cellPhone }}" class="push-right">-->
+<!--<span class="media-object pull-left icon icon-sms"></span>-->
+<!--<div class="media-body">-->
+<!--SMS-->
+<!--<p>{{ cellPhone }}</p>-->
+<!--</div>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li class="table-view-cell media">-->
+<!--<a href="mailto:{{ email }}" class="push-right">-->
+<!--<span class="media-object pull-left icon icon-mail"></span>-->
+<!--<div class="media-body">-->
+<!--Email-->
+<!--<p>{{ email }}</p>-->
+<!--</div>-->
+<!--</a>-->
+<!--</li>-->
+
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--</script>-->
+
+
+<script id="gallery-tpl" type="text/template" >
+  <!--Gallery-->
+  <!--<div class="pages">-->
+  <!--<div data-page="photos" class="page no-toolbar no-navbar">-->
+  <!--<div class="page-content">-->
+
+  <div class="navbarpages navbarpages-gallery">
+    <div class="navbar_left">
+      <div class="logo_text">
+              <span>
+              <a href="tel:012345678" class="close-panel external"
+                 data-view=".view-main"><img src="images/icons/white/phone.png" title=""/></a>
+              </span>
+      </div>
+    </div>
+    <div class="navbar_center">
+      <div class="logo_text"><a href="#home"><span>GALLERY</span></a></div>
+    </div>
+    <div class="top_menu_open">
+      <a href="#" data-panel="left" class="open-panel">
+        <span class="icon-menu"></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="bottombarpages"></div>
+
+  <div id="pages_maincontent">
+    <div class="page_single layout_fullwidth">
+      <div class="tabs-animated-wrap photos_tabs">
+        <div class="tabs">
+          <div id="tab1p" class="tab active">
+            <ul id="photoslist" class="photo_gallery_13">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearleft"></div>
+  </div>
+
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+</script>
+
+
+<script id="wishlist-tpl" type="text/template">
+  <div class="pages">
+    <div data-page="blog" class="page no-toolbar no-navbar">
+      <div class="page-content">
+
+        <!--Header-->
+        <div class="navbarpages navbarpages-gallery">
+          <div class="navbar_left">
+            <div class="logo_text">
+              <span>
+              <a href="tel:012345678" class="close-panel external"
+                 data-view=".view-main"><img src="images/icons/white/phone.png" title="" /></a>
+              </span>
+            </div>
+          </div>
+          <div class="navbar_center">
+            <div class="logo_text"><a href="index.html"><span>WISHLIST</span></a></div>
+          </div>
+          <div class="top_menu_open">
+            <a href="#" data-panel="left" class="open-panel">
+              <span class="icon-menu"></span>
+            </a>
+          </div>
+        </div>
+
+
+        <div id="pages_maincontent">
+          <div class="page_single layout_fullwidth_padding">
+
+            <div class="list-block">
+              <ul class="posts">
+                <li class="swipeout">
+                  <div class="swipeout-content item-content">
+                    <div class="post_entry">
+                      <div class="post_thumb"><img src="images/photos/photo8.jpg" alt="" title="" /></div>
+                      <div class="post_details">
+                        <div class="post_category"><a href="blog.html">CONDO D105</a></div>
+                        <h2><a href="blog-single.html">
+                          <p>• $1,200,800</p><p>• 6 Rooms</p><p>• 5th Floor | Facing north</p>
+                        </a></h2>
+                      </div>
 
                     </div>
-                </div>
+                  </div>
+                  <div class="swipeout-actions-right">
+                    <a href="#" class="action1 open-popup" data-popup=".popup-social"><img src="images/icons/white/like.png" alt="" title="" /></a>
+                    <a href="#" class="action1 open-popup" data-popup=".popup-social"><img src="images/icons/white/trash.png" alt="" title="" /></a>
+                  </div>
+                </li>
+                <li class="swipeout">
+                  <div class="swipeout-content item-content">
+                    <div class="post_entry">
+                      <div class="post_thumb"><img src="images/photos/photo2.jpg" alt="" title="" /></div>
+                      <div class="post_details">
+                        <div class="post_category"><a href="blog.html">CONDO D105</a></div>
+                        <h2><a href="blog-single.html"><p>• $1,200,800</p><p>• 6 Rooms</p><p>• 5th Floor | Facing north</p></a></h2>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="swipeout-actions-right">
+                    <a href="#" class="action1 open-popup" data-popup=".popup-social"><img src="images/icons/white/like.png" alt="" title="" /></a>
+                    <a href="#" class="action1 open-popup" data-popup=".popup-social"><img src="images/icons/white/trash.png" alt="" title="" /></a>
+                  </div>
+                </li>
+                <li class="swipeout">
+                  <div class="swipeout-content item-content">
+                    <div class="post_entry">
+                      <div class="post_thumb"><img src="images/photos/photo1.jpg" alt="" title="" /></div>
+                      <div class="post_details">
+                        <div class="post_category"><a href="blog.html">CONDO D105</a></div>
+                        <h2><a href="blog-single.html"><p>• $1,200,800</p><p>• 6 Rooms</p><p>• 5th Floor | Facing north</p></a></h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swipeout-actions-right">
+                    <a href="#" class="action1 open-popup" data-popup=".popup-social"><img src="images/icons/white/like.png" alt="" title="" /></a>
+                    <a href="#" class="action1 open-popup" data-popup=".popup-social"><img src="images/icons/white/trash.png" alt="" title="" /></a>
+                  </div>
+                </li>
+                <li class="swipeout">
+                  <div class="swipeout-content item-content">
+                    <div class="post_entry">
+                      <div class="post_thumb"><img src="images/photos/photo4.jpg" alt="" title="" /></div>
+                      <div class="post_details">
+                        <div class="post_category"><a href="blog.html">CONDO D105</a></div>
+                        <h2><a href="blog-single.html"><p>• $1,200,800</p><p>• 6 Rooms</p><p>• 5th Floor | Facing north</p></a></h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swipeout-actions-right">
+                    <a href="#" class="action1 open-popup" data-popup=".popup-social"><img src="images/icons/white/like.png" alt="" title="" /></a>
+                    <a href="#" class="action1 open-popup" data-popup=".popup-social"><img src="images/icons/white/trash.png" alt="" title="" /></a>
+                  </div>
+                </li>
+                <li class="swipeout">
+                  <div class="swipeout-content item-content">
+                    <div class="post_entry">
+                      <div class="post_thumb"><img src="images/photos/photo6.jpg" alt="" title="" /></div>
+                      <div class="post_details">
+                        <div class="post_category"><a href="blog.html">CONDO D105</a></div>
+                        <h2><a href="blog-single.html"><p>• $1,200,800</p><p>• 6 Rooms</p><p>• 5th Floor | Facing north</p></a></h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swipeout-actions-right">
+                    <a href="#" class="action1 open-popup" data-popup=".popup-social"><img src="images/icons/white/like.png" alt="" title="" /></a>
+                    <a href="#" class="action1 open-popup" data-popup=".popup-social"><img src="images/icons/white/trash.png" alt="" title="" /></a>
+                  </div>
+                </li>
+                <li class="swipeout">
+                  <div class="swipeout-content item-content">
+                    <div class="post_entry">
+                      <div class="post_thumb"><img src="images/photos/photo5.jpg" alt="" title="" /></div>
+                      <div class="post_details">
+                        <div class="post_category"><a href="blog.html">CONDO D105</a></div>
+                        <h2><a href="blog-single.html"><p>• $1,200,800</p><p>• 6 Rooms</p><p>• 5th Floor | Facing north</p></a></h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swipeout-actions-right">
+                    <a href="#" class="action1 open-popup" data-popup=".popup-social"><img src="images/icons/white/like.png" alt="" title="" /></a>
+                    <a href="#" class="action1 open-popup" data-popup=".popup-social"><img src="images/icons/white/trash.png" alt="" title="" /></a>
+                  </div>
+                </li>
+              </ul>
+
+
             </div>
 
-
+          </div>
 
         </div>
+
+
+      </div>
     </div>
+  </div>
+</script>
 
 
-    <!-- Login Popup -->
-    <div class="popup popup-login">
-      <div class="popup-login-background"></div>
-        <div class="content-block">
-          <div class="popup-logo"><img src="images/login.png" alt=""></div>
-            <h4 class="content-block-title">Log In into your account</h4>
-            <div class="loginform">
-                <form id="LoginForm" method="post">
-                    <input type="text" name="Username" value="" class="form_input required" placeholder="YOUR EMAIL" />
-                    <input type="password" name="Password" value="" class="form_input required" placeholder="PHONE NUMBER" />
-                    <div class="forgot_pass"><a href="#" data-popup=".popup-forgot" class="open-popup">Forgot login information?</a></div>
-                    <input type="submit" name="submit" class="form_submit" id="submit" value="SIGN IN" />
-                </form>
-                <div class="signup_bottom">
-                    <span>Don't have an account?</span>
-                    <span><a href="#" data-popup=".popup-signup" class="open-popup">SIGN UP</a></span>
-                </div>
-            </div>
-            <div class="close_popup_button">
-                <a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title="" /></a>
-            </div>
-        </div>
+<script id="footer-tpl" type="text/template">
+  <!--Footer-->
+  <div class="swiper-container-toolbar swiper-toolbar swiper-init" data-effect="slide"
+       data-slides-per-view="4" data-slides-per-group="4" data-space-between="0"
+       data-pagination=".swiper-pagination-toolbar">
+    <div class="swiper-pagination-toolbar"></div>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide toolbar-icon"><a href="about.html" data-view=".view-main">
+        <div class="icon-building"></div>
+        <span class="footer">Room No.</span></a></div>
+      <div class="swiper-slide toolbar-icon"><a href="#" data-popup=".popup-login" class="open-popup close-panel">
+        <div class="icon-menu"></div>
+        <span class="footer">Floor No.</span></a></div>
+      <div class="swiper-slide toolbar-icon"><a href="firetest.html" data-view=".view-main"
+                                                class="external">
+        <div class="icon-menu"></div>
+        <span class="footer">Budget</span></a></div>
+      <div class="swiper-slide toolbar-icon"><a href="contact.html" data-view=".view-main">
+        <div class="icon-menu"></div>
+        <span class="footer">Availability</span></a></div>
+
+      <div class="swiper-slide toolbar-icon"><a href="cart.html" data-view=".view-main">
+        <div class="icon-menu"></div>
+        <span class="footer">Room No.</span></a></div>
+      <div class="swiper-slide toolbar-icon"><a href="#" data-popup=".popup-social" class="open-popup">
+        <div class="icon-menu"></div>
+        <span class="footer">Room No.</span></a></div>
+      <div class="swiper-slide toolbar-icon"><a href="#" data-popup=".popup-login" class="open-popup">
+        <div class="icon-menu"></div>
+        <span class="footer">Room No.</span></a></div>
+      <div class="swiper-slide toolbar-icon"><a href="blog.html" data-view=".view-main">
+        <div class="icon-menu"></div>
+        <span class="footer">Room No.</span>
+      </a></div>
+
+      <div class="swiper-slide toolbar-icon"><a href="features.html" data-view=".view-main">
+        <div class="icon-menu"></div>
+        <span class="footer">Room No.</span></a></div>
+
     </div>
+  </div>
+</script>
 
-    <!-- Register Popup -->
-    <div class="popup popup-signup">
+<script src="cordova.js"></script>
+<script src="lib/fastclick.js"></script>
+<script src="lib/handlebars.js"></script>
+<script src="lib/jquery.js"></script>
+<script src="lib/pageslider.js"></script>
 
-        <div class="content-block content-block-register">
-          <div class="popup-logo"><img src="images/icons/signup.png" alt=""></div>
-            <h4>CREATE NEW ACCOUNT</h4>
-            <div class="loginform">
-                <form id="RegisterForm" method="post">
-                    <input type="text" name="Username" value="" class="form_input required" placeholder="Username" />
-                    <input type="text" name="Email" value="" class="form_input required" placeholder="Email" />
-                    <input type="password" name="Password" value="" class="form_input required" placeholder="Password" />
-                  <input type="password" name="Password" value="" class="form_input required" placeholder="Password" />
-                    <input type="submit" name="submit" class="form_submit_register" id="submit" value="SIGN UP" />
-                </form>
-              <div class="signup_bottom signup_bottom_register">
-                <span>Already have an account? </span>
-                <span><a href="#" data-popup=".popup-login" class="open-popup">LOGIN</a></span>
-              </div>
+<script src="lib/router.js"></script>
+<script src="js/services/memory/EmployeeService.js"></script>
+<script src="js/views/EmployeeListView.js"></script>
+<script src="js/views/HomeView.js"></script>
+<script src="js/views/EmployeeView.js"></script>
+<script src="js/views/GalleryView.js"></script>
+<script src="js/views/WishlistView.js"></script>
+<script src="js/views/FooterView.js"></script>
+<script src="js/app.js"></script>
 
-            </div>
-            <div class="close_popup_button">
-                <a href="#" class="close-popup close_popup_button_register a"><img src="images/icons/black/menu_close.png" alt="" title="" /></a>
-            </div>
-        </div>
-    </div>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/framework7.js"></script>
+<script type="text/javascript" src="js/jquery.swipebox.js"></script>
+<script type="text/javascript" src="js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="js/my-app.js"></script>
 
-    <!-- Forgot Password Popup -->
-    <div class="popup popup-forgot">
-      <div class="popup-login-background"></div>
-        <div class="content-block">
-            <h4>FORGOT PASSWORD</h4>
-            <div class="loginform">
-                <form id="ForgotForm" method="post">
-                    <input type="text" name="Email" value="" class="form_input required" placeholder="email" />
-                    <input type="submit" name="submit" class="form_submit" id="submit" value="RESEND PASSWORD" />
-                </form>
-                <div class="signup_bottom">
-                    <p>Check your email and follow the instructions to reset your password.</p>
-                </div>
-            </div>
-            <div class="close_popup_button">
-                <a href="#" class="close-popup"><img src="images/icons/black/menu_close.png" alt="" title="" /></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Social Icons Popup -->
-    <!--<div class="popup popup-social">-->
-        <!--<div class="content-block">-->
-            <!--<h4>Social Share</h4>-->
-            <!--<p>Share icons solution that allows you share and increase your social popularity.</p>-->
-            <!--<ul class="social_share">-->
-                <!--<li><a href="http://twitter.com/" class="external"><img src="images/icons/black/twitter.png" alt=""-->
-                            <!--title="" /><span>TWITTER</span></a></li>-->
-                <!--<li><a href="http://www.facebook.com/" class="external"><img src="images/icons/black/facebook.png" alt=""-->
-                            <!--title="" /><span>FACEBOOK</span></a></li>-->
-                <!--<li><a href="http://plus.google.com" class="external"><img src="images/icons/black/gplus.png" alt=""-->
-                            <!--title="" /><span>GOOGLE</span></a></li>-->
-                <!--<li><a href="http://www.dribbble.com/" class="external"><img src="images/icons/black/dribbble.png" alt=""-->
-                            <!--title="" /><span>DRIBBBLE</span></a></li>-->
-                <!--<li><a href="http://www.linkedin.com/" class="external"><img src="images/icons/black/linkedin.png" alt=""-->
-                            <!--title="" /><span>LINKEDIN</span></a></li>-->
-                <!--<li><a href="http://www.pinterest.com/" class="external"><img src="images/icons/black/pinterest.png"-->
-                            <!--alt="" title="" /><span>PINTEREST</span></a></li>-->
-            <!--</ul>-->
-            <!--<div class="close_popup_button"><a href="#" class="close-popup"><img src="images/icons/black/menu_close.png"-->
-                        <!--alt="" title="" /></a></div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="js/framework7.js"></script>
-    <script type="text/javascript" src="js/jquery.swipebox.js"></script>
-    <script type="text/javascript" src="js/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="js/email.js"></script>
-    <script type="text/javascript" src="js/audio.min.js"></script>
-    <script type="text/javascript" src="js/my-app.js"></script>
-
-
-    <!-- Firebase App is always required and must be first -->
-    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
-
-    <!-- Add additional services that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-functions.js"></script>
-
-    <!-- Comment out (or don't include) services that you don't want to use -->
-    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-storage.js"></script>
-
-    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
-
-    <script src="js/firestore.js" type="text/javascript"></script>
 </body>
-
 </html>
